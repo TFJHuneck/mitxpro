@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ball movement exercise</title>
+</head>
+<body>
+    <div id="ball" style=
+    "z-index: 5;
+    position: absolute;
+    left: 1000px;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: black;">
+    </div>
+
+    <script>
+        var ball = document.getElementById('ball');
+        var velocity = 100;
+        var positionX = 0;
+        var positionY = 0;
+        var reverse = false;
+        
+        function moveBall() {
+            var Xmin = 0;
+            var Xmax = 1200;
+            var Ymin = 0;
+            var Ymax = 1000;
+            reverse=!reverse
+            if(positionX >= Xmax || positionY >= Ymax && reverse == false){
+                reverse = true;
+            }
+            if(positionX <= Xmin || positionY <= Ymin && reverse == true ){
+                reverse = false;
+            }
+            if(!reverse){
+                positionX = positionX + velocity;
+                positionY = positionY + velocity;
+            } 
+            else{
+                positionX = positionX - velocity;
+                positionY = positionY - velocity;
+            }
+            ball.style.left = positionX + 'px';
+            ball.style.top = positionY + 'px';
+        }
+        setInterval(moveBall, 1000);
+    </script>
+</body>
+</html>
+
